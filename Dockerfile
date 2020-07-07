@@ -2,7 +2,8 @@
 FROM adoptopenjdk/openjdk8-openj9:jre8u222-b10_openj9-0.15.1-alpine
 VOLUME /tmp
 ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
+#COPY ${JAR_FILE} app.jar
+COPY ./target/spring-cloud-eureka-0.0.1-SNAPSHOT.jar app.jar
 ENV JAVA_OPTS=""
 RUN /bin/sh -c "java -Xcmx50M -Xshareclasses -Xshareclasses -jar app.jar &"; sleep 20;
 #RUN /bin/sh -c "java -Xcmx50M -Xshareclasses -Xshareclasses -jar app.jar &"; sleep 20; ps -ef | grep java | awk '{print $2}' | xargs kill
