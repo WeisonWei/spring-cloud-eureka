@@ -1,0 +1,33 @@
+server:
+  port: 8761
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+spring:
+  application:
+    name: cloud-eureka
+  cloud:
+    config:
+      discovery:
+        enabled: true
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 5000
+    use-read-only-response-cache: false
+    enable-self-preservation: false
+
